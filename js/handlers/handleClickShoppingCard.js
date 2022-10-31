@@ -22,11 +22,13 @@ export default function handleClickShoppingCard(e) {
         userInSession.shoppingCard.push({ id: itemId, count: 1 });
     }
 
-    const button = e.target.closest("button.product__cart");
 
-    favorIndex === -1
-        ? button?.classList.add("product__cart--in")
-        : button?.classList.remove("product__cart--in");
+    document.querySelectorAll(`.product[data-id="${itemId}"]`).forEach(item => {
+        const button = item.querySelector('button.product__cart');
+        favorIndex === -1
+            ? button?.classList.add("product__cart--in")
+            : button?.classList.remove("product__cart--in");
+    });
 
     headerShoppingCartCount.innerText =
         userInSession.shoppingCard.reduce((acc, curr) => acc + curr.count, 0) ?? 0;
