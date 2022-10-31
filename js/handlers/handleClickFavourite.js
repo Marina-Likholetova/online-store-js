@@ -17,7 +17,13 @@ export default function handleClickFavourite(e) {
         userInSession.favourites.push(itemId);
     }
 
-    e.target.closest("img").src = `images/product__favourite${favorIndex === -1 ? "--true" : ""}.png`;
+    document.querySelectorAll(`.product[data-id="${itemId}"]`).forEach(item => {
+        item.querySelector('.product__favourite')
+            .querySelector('img')
+            .src = `images/product__favourite${favorIndex === -1 ? "--true" : ""}.png`;
+       
+    });
+    
     headerFavouritesCount.innerText = userInSession.favourites.length;
     localStorage.setItem("users", JSON.stringify(storageUsers));
 }
