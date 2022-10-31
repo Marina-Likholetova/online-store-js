@@ -22,7 +22,7 @@ export default function renderRow(product, count, btnClass) {
     return `<tr data-id=${product.id}>
                 <td>
                     <div class="item__info">
-                        <img src="images/products/${product.img}.png" alt="${product.title}" height="100">
+                        <img src="images/products/${product.img.toLowerCase()}.png" alt="${product.title}" height="100">
                             <div>
                                 <p class="item__info--title">${product.title}</p>
                             </div>

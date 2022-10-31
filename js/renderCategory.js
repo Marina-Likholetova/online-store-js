@@ -25,7 +25,7 @@ export default function renderCategory(category) {
                                                     : ""
                                             }.png" alt="favourite" height="20">
 										</button>
-										<img src="images/products/${product.img}.png" class="product__img" alt="${product.title}" height="80">
+										<img src="images/products/${product.img.toLowerCase()}.png" class="product__img" alt="${product.title}" height="80">
 										<p class="product__title">${product.title}</p>
 
 										${(() => {
