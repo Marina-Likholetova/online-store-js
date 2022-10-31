@@ -204,7 +204,6 @@ if (orderTable) {
  */
 
 export const shoppingCardTable = document.querySelector("#shoppingCardTable");
-const completeOrder = document.querySelector("button[type=submit]");
 
 if (shoppingCardTable) {
     const trs = userInSession.shoppingCard.map((card) => {
@@ -223,16 +222,19 @@ if (shoppingCardTable) {
         .querySelectorAll(".countInput")
         .forEach((input) => input.addEventListener("change", onChangeCountInput));
 
-    completeOrder.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (!userInSession.shoppingCard.length) return;
-        userInSession.ordered = [...userInSession.ordered, ...userInSession.shoppingCard];
-        userInSession.shoppingCard = [];
-        userInSession.favourites = userInSession.favourites.filter(
-            (item) => !userInSession.ordered.find((order) => order.id === item)
-        );
+    document
+        .querySelector("button[type=submit]").addEventListener("click", (e) => {
+            e.preventDefault();
 
-        localStorage.setItem("users", JSON.stringify(storageUsers));
-        document.location.href = "account.html";
+            if (!userInSession.shoppingCard.length) return;
+            
+            userInSession.ordered = [...userInSession.ordered, ...userInSession.shoppingCard];
+            userInSession.shoppingCard = [];
+            userInSession.favourites = userInSession.favourites.filter(
+                (item) => !userInSession.ordered.find((order) => order.id === item)
+            );
+
+            localStorage.setItem("users", JSON.stringify(storageUsers));
+            document.location.href = "account.html";
     });
 }
